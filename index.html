@@ -1,29 +1,53 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
+    <!-- ============== META TAGS ============== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="Nikmati kelezatan Roti Bakar Premium dan Susu Murni Segar di Roti Bakar Beverly Hills. Pilihan cemilan enak dan tempat nongkrong asik di Gondokusuman, Gejayan, dan Maguwoharjo, Jogja.">
-    
     <title>Roti Bakar Beverly Hills: Roti Bakar Premium & Susu Murni Segar di Jogja</title>
     
+    <!-- === SEO and Legitimacy Meta Tags === -->
+    <meta name="description" content="Nikmati kelezatan Roti Bakar Premium dan Susu Murni Segar di Roti Bakar Beverly Hills. Pilihan cemilan enak dan tempat nongkrong asik di Gondokusuman, Gejayan, dan Maguwoharjo, Jogja.">
+    <meta name="keywords" content="roti bakar jogja, susu murni jogja, tempat nongkrong jogja, kuliner gejayan, kuliner maguwoharjo, beverly hills jogja">
+    <meta name="author" content="Roti Bakar Beverly Hills">
+    <link rel="canonical" href="https://your-website-url.com"> <!--! GANTI: Masukkan URL website Anda yang sebenarnya -->
+
+    <!-- === Open Graph / Facebook / Social Media Meta Tags === -->
+    <meta property="og:title" content="Roti Bakar Beverly Hills: Roti Bakar Premium & Susu Murni Segar di Jogja">
+    <meta property="og:description" content="Nikmati kelezatan Roti Bakar Premium dan Susu Murni Segar di Roti Bakar Beverly Hills.">
+    <meta property="og:image" content="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/6230985c-06f0-4d8a-a503-147675d7e9e1_file20191011-23785-1rzmiqk.jpeg">
+    <meta property="og:url" content="https://your-website-url.com"> <!--! GANTI: Masukkan URL website Anda yang sebenarnya -->
+    <meta property="og:type" content="website">
+
+    <!-- === Twitter Card Meta Tags === -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Roti Bakar Beverly Hills: Roti Bakar Premium & Susu Murni Segar di Jogja">
+    <meta name="twitter:description" content="Nikmati kelezatan Roti Bakar Premium dan Susu Murni Segar di Roti Bakar Beverly Hills.">
+    <meta name="twitter:image" content="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/6230985c-06f0-4d8a-a503-147675d7e9e1_file20191011-23785-1rzmiqk.jpeg">
+
+    <!-- === Favicon === -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍞</text></svg>">
+    
+    <!-- ============== STYLESHEETS & FONTS ============== -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- ============== TAILWIND CONFIG ============== -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         primary: '#d4af37',
                         'primary-dark': '#c09b2e',
                         secondary: '#8b0000',
-                        light: '#f8f9fa',
-                        dark: '#1a1a1a',
+                        light: '#fdfbd4',
+                        dark: '#121212', // Slightly lighter black for depth
+                        'dark-accent': '#1e1e1e',
                     },
                     fontFamily: {
                         'sans': ['Poppins', 'sans-serif'],
@@ -33,210 +57,436 @@
             }
         }
     </script>
+
+    <!-- ============== CUSTOM STYLES & ANIMATIONS ============== -->
     <style>
+        /* === Base & Layout === */
         html { scroll-padding-top: 80px; }
-        img { background-color: #f0f0f0; }
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            opacity: 0; /* Initially hide body for preloader */
+            transition: opacity 0.5s ease-in-out;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+        img { background-color: #e0e0e0; }
         img[alt] { text-align: center; line-height: 1.5; font-size: 0.9rem; color: #666; }
-        .scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
-        .carousel-slide { transition: transform 0.5s ease-in-out; }
+        
+        /* === Accessibility === */
+        :focus-visible {
+            outline: 3px solid #d4af37;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+        
+        /* === Preloader Animation === */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #fdfbd4;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
+        .dark #preloader {
+            background-color: #121212;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader {
+            font-size: 3rem;
+            animation: spin 1.5s linear infinite;
+        }
+
+        /* === Animations & Transitions === */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 60px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        .scroll-reveal { 
+            opacity: 0;
+        }
+        /* UPDATED: Refined animation timing and easing for a smoother effect */
+        .scroll-reveal.visible {
+            animation: fadeInUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+        
+        .carousel-slide { transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); }
         .dot.active { background-color: #d4af37; transform: scale(1.25); }
-        .star-rating .fa-star { color: #e0e0e0; cursor: pointer; transition: color 0.2s; }
-        .star-rating .fa-star:hover,
+        .star-rating .fa-star { color: #e0e0e0; cursor: pointer; transition: color 0.2s, transform 0.2s; }
+        .star-rating .fa-star:hover { transform: scale(1.2); }
         .star-rating .fa-star.selected { color: #d4af37; }
-        .testimonial-card-bg { background-color: #fdfaf0; }
+        .dropdown-icon { transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+        
+        /* === Component Styles & Hovers === */
+        .testimonial-card-bg, .cert-badge, .menu-item-hover {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .testimonial-card-bg:hover, .cert-badge:hover, .menu-item-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .dark .testimonial-card-bg:hover, .dark .cert-badge:hover, .dark .menu-item-hover:hover {
+             box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+        }
+        .gallery-img {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .gallery-img:hover {
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .gallery-img:nth-child(1):hover { transform: scale(1.05) rotate(-2deg); }
+        .gallery-img:nth-child(2):hover { transform: scale(1.05) rotate(2deg); }
+        .gallery-img:nth-child(3):hover { transform: scale(1.05) rotate(2deg); }
+        .gallery-img:nth-child(4):hover { transform: scale(1.05) rotate(-2deg); }
+
+        .text-shadow { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); }
+        
         @keyframes pulse {
-            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            70% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); }
             100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
         }
         .animate-pulse-primary { box-shadow: 0 0 0 0 rgba(212, 175, 55, 1); animation: pulse 2s infinite; }
+        
+        .btn-primary, .btn-secondary {
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: perspective(1px) translateZ(0);
+        }
+        .btn-primary {
+            background-color: #d4af37; color: #1a1a1a; font-weight: bold;
+            padding: 0.75rem 2rem; border-radius: 9999px; text-transform: uppercase;
+            letter-spacing: 0.05em; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-primary:hover {
+            background-color: #c09b2e; transform: scale(1.05);
+            box-shadow: 0 7px 14px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.08);
+        }
+        .btn-secondary {
+            background-color: transparent; color: #d4af37; border: 2px solid #d4af37;
+            padding: 0.75rem 2rem; border-radius: 9999px; text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .btn-secondary:hover {
+            background-color: #d4af37; color: #1a1a1a; transform: scale(1.05);
+            box-shadow: 0 7px 14px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.08);
+        }
+        
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -5px; left: 50%; transform: translateX(-50%);
+            background-color: #d4af37; transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        .hero-dots .dot { background-color: rgba(255, 255, 255, 0.5); width: 0.75rem; height: 0.75rem; }
+        .hero-dots .dot.active { background-color: #d4af37; }
+        
+        .hero-content { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s; }
+        .hero-content.visible { opacity: 1; transform: translateY(0px); }
+        
+        .menu-dropdown { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; }
     </style>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-82YQK97SPL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-82YQK97SPL');
-</script>
+    
+    <!-- ============== GOOGLE ANALYTICS ============== -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-82YQK97SPL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-82YQK97SPL');
+    </script>
 </head>
 
-<body class="bg-light font-sans text-gray-800">
+<body class="bg-light dark:bg-dark font-sans text-gray-800 dark:text-gray-300">
 
-<header id="header" class="bg-white/90 backdrop-blur-sm shadow-md fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#" class="text-2xl font-serif font-bold text-dark">Beverly Hills</a>
+<!-- ============== PRELOADER ============== -->
+<div id="preloader">
+    <div class="loader">🍞</div>
+</div>
+
+<!-- ============== HEADER ============== -->
+<!-- Header Start -->
+<header id="header" class="bg-white/90 dark:bg-dark-accent/90 backdrop-blur-sm shadow-md dark:shadow-primary/10 fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="#home" class="text-3xl font-serif font-bold text-dark dark:text-light">Beverly Hills</a>
         <nav class="hidden md:flex items-center space-x-8">
-            <a href="#" class="text-gray-700 hover:text-primary font-medium transition-colors">Beranda</a>
-            <a href="#menu" class="text-gray-700 hover:text-primary font-medium transition-colors">Menu</a>
-            <a href="#about" class="text-gray-700 hover:text-primary font-medium transition-colors">Tentang</a>
-            <a href="#certification" class="text-gray-700 hover:text-primary font-medium transition-colors">Sertifikasi</a>
-            <a href="#reviews" class="text-gray-700 hover:text-primary font-medium transition-colors">Ulasan</a>
-            <a href="#contact" class="text-gray-700 hover:text-primary font-medium transition-colors">Lokasi</a>
+            <a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors duration-300">Beranda</a>
+            <a href="#menu" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors duration-300">Menu</a>
+            <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors duration-300">Tentang</a>
+            <a href="#certification" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors duration-300">Sertifikasi</a>
+            <a href="#reviews" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors duration-300">Ulasan</a>
+            <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors duration-300">Lokasi</a>
         </nav>
-        <button id="mobile-menu-btn" class="md:hidden text-2xl text-dark">
-            <i class="fas fa-bars"></i>
-        </button>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.464 16.364A1 1 0 005.05 14.95l-.707.707a1 1 0 001.414 1.414l.707-.707z" fill-rule="evenodd"></path></svg>
+            </button>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-dark dark:text-light z-50" aria-label="Buka menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-white p-6">
-        <a href="#" class="mobile-nav-link block py-2 text-gray-700 hover:text-primary">Beranda</a>
-        <a href="#menu" class="mobile-nav-link block py-2 text-gray-700 hover:text-primary">Menu</a>
-        <a href="#about" class="mobile-nav-link block py-2 text-gray-700 hover:text-primary">Tentang</a>
-        <a href="#certification" class="mobile-nav-link block py-2 text-gray-700 hover:text-primary">Sertifikasi</a>
-        <a href="#reviews" class="mobile-nav-link block py-2 text-gray-700 hover:text-primary">Ulasan</a>
-        <a href="#contact" class="mobile-nav-link block py-2 text-gray-700 hover:text-primary">Lokasi</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-accent p-6 absolute top-0 left-0 w-full shadow-lg">
+        <a href="#home" class="mobile-nav-link block py-3 text-lg text-gray-700 dark:text-gray-300 hover:text-primary transition-colors duration-300">Beranda</a>
+        <a href="#menu" class="mobile-nav-link block py-3 text-lg text-gray-700 dark:text-gray-300 hover:text-primary transition-colors duration-300">Menu</a>
+        <a href="#about" class="mobile-nav-link block py-3 text-lg text-gray-700 dark:text-gray-300 hover:text-primary transition-colors duration-300">Tentang</a>
+        <a href="#certification" class="mobile-nav-link block py-3 text-lg text-gray-700 dark:text-gray-300 hover:text-primary transition-colors duration-300">Sertifikasi</a>
+        <a href="#reviews" class="mobile-nav-link block py-3 text-lg text-gray-700 dark:text-gray-300 hover:text-primary transition-colors duration-300">Ulasan</a>
+        <a href="#contact" class="mobile-nav-link block py-3 text-lg text-gray-700 dark:text-gray-300 hover:text-primary transition-colors duration-300">Lokasi</a>
     </div>
 </header>
+<!-- Header End -->
 
-<section class="relative h-screen flex items-center justify-center text-white text-center p-6 pt-24">
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" style="background-image: url('https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/6230985c-06f0-4d8a-a503-147675d7e9e1_file20191011-23785-1rzmiqk.jpeg');">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-    </div>
-    <div class="relative z-10 scroll-reveal">
-        <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-wider text-shadow">Roti Bakar Beverly Hills</h1>
-        <p class="text-lg sm:text-xl md:text-3xl text-primary mt-4 font-medium italic">Kelezatan Roti Bakar Premium & Susu Segar Pilihan di Jogja</p>
-        <div class="mt-6 text-lg flex items-center justify-center gap-2">
+<main>
+
+    <!-- ============== HERO SECTION ============== -->
+    <!-- Hero Section Start -->
+    <section id="home" class="custom-carousel relative h-screen text-white text-center overflow-hidden">
+        <div class="carousel-container h-full">
+            <div class="carousel-slide flex h-full">
+                <!-- Slide 1 -->
+                <div class="w-full flex-shrink-0 h-full bg-cover bg-center relative" style="background-image: url('https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/6230985c-06f0-4d8a-a503-147675d7e9e1_file20191011-23785-1rzmiqk.jpeg');">
+                    <div class="absolute inset-0 bg-black/80"></div>
+                    <div class="absolute inset-0 flex items-center justify-center p-6 z-10 hero-content">
+                        <div>
+                            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-wider text-shadow">Roti Bakar Beverly Hills</h1>
+                            <p class="text-lg sm:text-xl md:text-3xl text-primary mt-4 font-medium italic">Roti Bakar & Susu Segar di </p>
+                                    <div class="mt-6 text-lg flex items-center justify-center gap-2">
             <i class="fas fa-map-marker-alt text-primary"></i>
             <span>Jogjakarta, Indonesia</span>
         </div>
-        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://www.google.com/maps/search/?q=Beverly+Hills+Jogja" target="_blank" class="bg-primary text-dark font-bold py-3 px-8 rounded-full uppercase tracking-wide hover:bg-primary-dark border-2 border-primary transition-all duration-300 transform hover:scale-105 shadow-lg w-full sm:w-auto animate-pulse-primary">
-                Cari Lokasi Kami
-            </a>
-            <a href="https://wa.me/6281234567890" target="_blank" class="bg-transparent text-primary font-bold py-3 px-8 rounded-full uppercase tracking-wide hover:bg-primary hover:text-dark border-2 border-primary transition-all duration-300 transform hover:scale-105 shadow-lg w-full sm:w-auto flex items-center justify-center gap-2">
-                <i class="fab fa-whatsapp"></i> Pesan Sekarang
-            </a>
-        </div>
-    </div>
-</section>
-
-<section id="menu" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-12 scroll-reveal">
-            <h2 class="text-4xl md:text-5xl font-serif text-secondary">Menu Roti Bakar & Cemilan Enak</h2>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            <div class="bg-light p-6 sm:p-8 rounded-xl shadow-lg scroll-reveal lg:col-span-2">
-                <h3 class="text-3xl font-serif text-secondary text-center mb-6 pb-4 border-b-2 border-dashed border-primary">Best Sellers Pilihan Pelanggan</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-start border-b border-gray-200 pb-3 gap-4">
-                        <div>
-                            <span class="font-semibold text-gray-700 block"><i class="fas fa-star text-primary mr-2"></i>Roti Bakar Omelette Beef</span>
-                            <p class="text-sm text-gray-500 italic">Perpaduan roti gandum lembut dengan isian omelette gurih dan daging sapi premium.</p>
+                            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                                <a href="https://www.google.com/maps/search/?q=Beverly+Hills+Jogja" target="_blank" rel="noopener noreferrer" class="btn-primary w-full sm:w-auto animate-pulse-primary">Cari Lokasi Kami</a>
+                                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn-primary btn-secondary w-full sm:w-auto flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> Pesan Sekarang</a>
+                            </div>
+                            
                         </div>
-                        <span class="font-bold text-primary whitespace-nowrap">Rp 17.000</span>
                     </div>
-                    <div class="flex justify-between items-start border-b border-gray-200 pb-3 gap-4">
-                        <div>
-                            <span class="font-semibold text-gray-700 block"><i class="fas fa-star text-primary mr-2"></i>Roti Bakar Kornet Keju</span>
-                            <p class="text-sm text-gray-500 italic">Roti renyah dengan isian kornet sapi berkualitas dan lelehan keju cheddar melimpah.</p>
-                        </div>
-                        <span class="font-bold text-primary whitespace-nowrap">Rp 17.000</span>
-                    </div>
-                    <div class="flex justify-between items-start border-b border-gray-200 pb-3 gap-4">
-                        <div>
-                           <span class="font-semibold text-gray-700 block"><i class="fas fa-star text-primary mr-2"></i>Susu Murni Segar</span>
-                           <p class="text-sm text-gray-500 italic">100% susu sapi murni dari peternak lokal Jogja, disajikan dingin atau hangat.</p>
-                        </div>
-                        <span class="font-bold text-primary whitespace-nowrap">Rp 10.000</span>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-gray-200 pb-3"><span class="font-semibold text-gray-700">Susu Murni Coklat</span><span class="font-bold text-primary whitespace-nowrap">Rp 12.000</span></div>
-                    <div class="flex justify-between items-center border-b border-gray-200 pb-3"><span class="font-semibold text-gray-700">Mie Kuah Susu Kornet Keju</span><span class="font-bold text-primary whitespace-nowrap">Rp 22.000</span></div>
-                    <div class="flex justify-between items-center border-b border-gray-200 pb-3"><span class="font-semibold text-gray-700">Jagung Bakar Special Keju</span><span class="font-bold text-primary whitespace-nowrap">Rp 14.000</span></div>
-                    <div class="flex justify-between items-center"><span class="font-semibold text-gray-700">Pisang Bakar Keju</span><span class="font-bold text-primary whitespace-nowrap">Rp 14.000</span></div>
                 </div>
-            </div>
-            <div class="bg-light p-6 sm:p-8 rounded-xl shadow-lg text-center scroll-reveal">
-                <h3 class="text-3xl font-serif text-secondary mb-6 pb-4 border-b-2 border-dashed border-primary">Menu Lengkap</h3>
-                <div class="custom-carousel relative w-full max-w-xs mx-auto">
-                    <div class="carousel-container overflow-hidden rounded-lg">
-                        <div class="carousel-slide flex">
-                            <img src="images/images/menu1.png" alt="Daftar Menu Halaman 1" class="w-full flex-shrink-0">
-                            <img src="images/images/menu2.jpg" alt="Daftar Menu Halaman 2" class="w-full flex-shrink-0">
-                            <img src="images/images/menu3.jpg" alt="Daftar Menu Halaman 3" class="w-full flex-shrink-0">
-                            <img src="images/images/menu4.jpg" alt="Daftar Menu Halaman 4" class="w-full flex-shrink-0">
+                <!-- Slide 2 -->
+                <div class="w-full flex-shrink-0 h-full bg-cover bg-center relative" style="background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9cZ5GNZjVa1UopNgtb9KMhA5wLVSfwA7dV_KBD04NVDI0m_r08K2rlNBv1IuAOg3JQaWAXNL9zIoLcmMATjT_XjI-OIzPqMPP03IGZ_iI3JtqEpxrTXCMIsNf0_4ObGoB1morsg=s680-w680-h510-rw');">
+                    <div class="absolute inset-0 bg-black/80"></div>
+                    <div class="absolute inset-0 flex items-center justify-center p-6 z-10 hero-content">
+                        <div>
+                            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-wider text-shadow">Roti Bakar Kualitas Premium</h1>
+                            <p class="text-lg sm:text-xl md:text-3xl text-primary mt-4 font-medium italic">Dibuat dengan bahan-bahan pilihan.</p>
+                             <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                                <a href="https://www.google.com/maps/search/?q=Beverly+Hills+Jogja" target="_blank" rel="noopener noreferrer" class="btn-primary w-full sm:w-auto animate-pulse-primary">Cari Lokasi Kami</a>
+                                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn-primary btn-secondary w-full sm:w-auto flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> Pesan Sekarang</a>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-btn prev absolute top-1/2 left-2 -translate-y-1/2 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/60 transition-colors" aria-label="Previous Menu">❮</button>
-                    <button class="carousel-btn next absolute top-1/2 right-2 -translate-y-1/2 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/60 transition-colors" aria-label="Next Menu">❯</button>
-                    <div class="carousel-dots flex justify-center space-x-2 mt-4"></div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="about" class="py-20 bg-light">
-    <div class="container mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div class="scroll-reveal">
-                <h2 class="text-4xl font-serif text-secondary mb-6">Kenapa Memilih Beverly Hills?</h2>
-                <div class="space-y-6">
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-check-circle text-primary text-2xl mt-1"></i>
+                <!-- Slide 3 -->
+                <div class="w-full flex-shrink-0 h-full bg-cover bg-center relative" style="background-image: url('https://i.ytimg.com/vi/q_VPp_kAAoA/maxresdefault.jpg');">
+                    <div class="absolute inset-0 bg-black/80"></div>
+                    <div class="absolute inset-0 flex items-center justify-center p-6 z-10 hero-content">
                         <div>
-                            <h4 class="text-xl font-semibold text-gray-800">Susu Segar 100% Murni</h4>
-                            <p class="text-gray-600">Kami berkomitmen menggunakan susu segar langsung dari peternak lokal untuk menjamin kesegaran alami dalam setiap sajian.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-check-circle text-primary text-2xl mt-1"></i>
-                        <div>
-                            <h4 class="text-xl font-semibold text-gray-800">Cemilan Lezat & Berkualitas</h4>
-                            <p class="text-gray-600">Semua cemilan dibuat dengan bahan-bahan pilihan, resep otentik, dan tanpa bahan pengawet berbahaya.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-check-circle text-primary text-2xl mt-1"></i>
-                        <div>
-                            <h4 class="text-xl font-semibold text-gray-800">Pilihan Sehat Untuk Keluarga</h4>
-                            <p class="text-gray-600">Menawarkan produk yang menyehatkan, aman dikonsumsi segala usia, dan penuh kebaikan alami untuk Anda dan keluarga.</p>
+                            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-wider text-shadow">Suasana Nyaman di Jantung Jogja</h1>
+                            <p class="text-lg sm:text-xl md:text-3xl text-primary mt-4 font-medium italic">Nikmati waktu santai bersama teman dan keluarga.</p>
+                            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                                 <a href="https://www.google.com/maps/search/?q=Beverly+Hills+Jogja" target="_blank" rel="noopener noreferrer" class="btn-primary w-full sm:w-auto animate-pulse-primary">Cari Lokasi Kami</a>
+                                 <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn-primary btn-secondary w-full sm:w-auto flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> Pesan Sekarang</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-4 scroll-reveal">
-                <img src="images/images/1.jpg" alt="Suasana tempat nongkrong nyaman di Roti Bakar Beverly Hills Gejayan" class="rounded-lg shadow-lg w-full h-full object-cover aspect-square transition-transform duration-300 hover:scale-105">
-                <img src="images/images/2.jpg" alt="Roti Bakar Omelette Beef premium khas Beverly Hills Jogja" class="rounded-lg shadow-lg w-full h-full object-cover aspect-square transition-transform duration-300 hover:scale-105">
-                <img src="images/images/3.jpg" alt="Susu Murni Segar Jogja disajikan dalam gelas" class="rounded-lg shadow-lg w-full h-full object-cover aspect-square transition-transform duration-300 hover:scale-105">
-                <img src="images/images/4.jpg" alt="Interior kedai Roti Bakar Beverly Hills yang nyaman untuk nongkrong" class="rounded-lg shadow-lg w-full h-full object-cover aspect-square transition-transform duration-300 hover:scale-105">
-            </div>
         </div>
-    </div>
-</section>
 
-<section id="certification" class="py-20 bg-white">
-    <div class="container mx-auto px-6 text-center">
-        <div class="mb-12 scroll-reveal">
-            <h2 class="text-4xl md:text-5xl font-serif text-secondary">Sertifikasi & Kepercayaan</h2>
-        </div>
-        <div class="flex flex-wrap justify-center items-center gap-8">
-            <div class="cert-badge bg-white p-4 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer scroll-reveal" onclick="openModal('images/images/halal.jpg')">
-                <img src="images/images/halal.jpg" alt="Sertifikat Halal MUI Roti Bakar Beverly Hills" class="h-32 md:h-40 w-auto">
-            </div>
-            <div class="cert-badge bg-white p-4 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer scroll-reveal" onclick="openModal('images/images/halal2.png')">
-                <img src="images/images/halal2.png" alt="Sertifikasi Keamanan Pangan" class="h-32 md:h-40 w-auto">
-            </div>
-            <div class="cert-badge bg-white p-4 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer scroll-reveal" onclick="openModal('images/images/halal3.png')">
-                <img src="images/images/halal3.png" alt="Sertifikasi HACCP" class="h-32 md:h-40 w-auto">
-            </div>
-        </div>
-    </div>
-</section>
+        <!-- Carousel Controls -->
+        <button class="carousel-btn prev absolute top-1/2 left-6 -translate-y-1/2 bg-black/30 text-white rounded-full w-12 h-12 flex items-center justify-center hover:bg-black/50 transition-colors z-20 text-2xl" aria-label="Slide sebelumnya">❮</button>
+        <button class="carousel-btn next absolute top-1/2 right-6 -translate-y-1/2 bg-black/30 text-white rounded-full w-12 h-12 flex items-center justify-center hover:bg-black/50 transition-colors z-20 text-2xl" aria-label="Slide berikutnya">❯</button>
+        <div class="carousel-dots hero-dots absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-20"></div>
+    </section>
+    <!-- Hero Section End -->
 
-<section id="reviews" class="py-20 bg-light scroll-mt-24" style="background-image: url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23d4af37%22 fill-opacity=%220.04%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
+    <!-- ============== MENU SECTION ============== -->
+    <!-- Menu Section Start -->
+    <section id="menu" class="py-24 bg-white dark:bg-dark-accent/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-serif text-secondary">Menu Andalan Kami</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">Cita rasa otentik yang selalu dirindukan.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+                <div class="bg-light dark:bg-dark p-8 rounded-2xl shadow-lg scroll-reveal lg:col-span-2 border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-3xl font-serif text-secondary text-center mb-8 pb-4 border-b-2 border-dashed border-primary/50">Best Sellers Pilihan Pelanggan</h3>
+                    <div class="space-y-4">
+                        <!-- Menu Item -->
+                        <div class="menu-item-wrapper">
+                            <div data-menu-toggle class="menu-item-hover dark:bg-dark-accent flex justify-between items-center gap-4 p-4 cursor-pointer">
+                                <div>
+                                    <span class="font-semibold text-lg text-gray-800 dark:text-gray-200 block"><i class="fas fa-star text-primary mr-2"></i>Combo Roti Bakar + Susu Murni</span>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">Kombinasi klasik roti bakar pilihanmu dengan segelas susu murni segar yang nikmat.</p>
+                                </div>
+                                 <i class="fas fa-chevron-down dropdown-icon text-gray-500 ml-4"></i>
+                            </div>
+                            <div class="menu-dropdown px-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4">
+                                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npf7HVY8pc65QOvoOTU27GB-GD4VWWxmzIjMBzeIKVm31mS8vAxsb35P6w5xNuaoqJP1Uw8zETLcxz74xrwfEDpkOqShiKcQtpgb7teDbLpAp9QgIV0ul11_poFAe8P9r4qXdizvg=s680-w680-h510-rw" alt="Combo Roti Bakar dan Susu Murni 2" class="rounded-lg aspect-square object-cover">
+                                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npi__2lW0v8pVaLmfQ_V77Fpsj4TpUIPYWUnzY6qoHrZzFq9jQ9xwCzGZbo9jCEk3lmC7HYVv6CjPXwtb_swkPwDwjos5UBYJDNHKkNE9SyMObsElk-eNcn0V06jWvCgD53NXYiVw=s680-w680-h510-rw" alt="Combo Roti Bakar dan Susu Murni 1" class="rounded-lg aspect-square object-cover">
+                                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npTHt5Zc3J_3gp_2fL9gZoVYqCfRdxCfPc2R-g9GJWUOdbJ64X6V53dmvkcqaohie1W-HxS-dnWOY5bNu_TkvGaPnRg9_z9qZVGfHYDKM-ZgUt5aT6AGH4-Ay2sfwstHzzNiZE=s680-w680-h510-rw" alt="Combo Roti Bakar dan Susu Murni 3" class="rounded-lg aspect-square object-cover">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Menu Item -->
+                        <div class="menu-item-wrapper">
+                            <div data-menu-toggle class="menu-item-hover dark:bg-dark-accent flex justify-between items-center gap-4 p-4 cursor-pointer">
+                                <div>
+                                    <span class="font-semibold text-lg text-gray-800 dark:text-gray-200 block"><i class="fas fa-star text-primary mr-2"></i>Menu Indomie</span>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">Sajian Indomie spesial dengan berbagai topping menggugah selera, pas untuk kapan saja.</p>
+                                </div>
+                                <i class="fas fa-chevron-down dropdown-icon text-gray-500 ml-4"></i>
+                            </div>
+                            <div class="menu-dropdown px-4">
+                                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4">
+                                     <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqX0OLNfRSwxEUG8-kSE7S-ID_P1ajfA_FSNG3yLEn9q08ju0tC5Rpv3Vd9dyVU0mch4A3_m6qHsUbZzzQOJBsOFX0YnnM7mcidSGOVXFuk51D-uaG8wgs0kXfKKY3fnGHT-cb1Nw=s680-w680-h510-rw" alt="Menu Indomie 1" class="rounded-lg aspect-square object-cover">
+                                     <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrJx0QYV7XWHAJWTbpR5FT4B6ymCdru6c1w2bB-_cbJhIAp7_bRafsmHqzihSTSfb7eGEMe6aKExqyMqNxLEYAZgctm0lgj6E16HhjYEibZzvaesiOPL2MRtf7csmsFhbfg0Qvt8A=s680-w680-h510-rw" alt="Menu Indomie 2" class="rounded-lg aspect-square object-cover">
+                                     <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr2vhtAcawgUublL9cJbWORDmyJoidlrnFcZyo0dol5Oif2FnoMZ0hU_ci4d20cnavly6RrmGGmbvASePhmtVOcKPflTMq0YF16DkL8Y_t3_OZvQDqJfoBRRjpcZr4T4txDvMM=s680-w680-h510-rw" alt="Menu Indomie 3" class="rounded-lg aspect-square object-cover">
+                                 </div>
+                            </div>
+                        </div>
+                        <!-- Menu Item -->
+                        <div class="menu-item-wrapper">
+                            <div data-menu-toggle class="menu-item-hover dark:bg-dark-accent flex justify-between items-center gap-4 p-4 cursor-pointer">
+                                <div>
+                                   <span class="font-semibold text-lg text-gray-800 dark:text-gray-200 block"><i class="fas fa-star text-primary mr-2"></i>Pisang & Jagung Bakar</span>
+                                   <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">Pilihan cemilan klasik pisang atau jagung bakar dengan bumbu spesial yang tak terlupakan.</p>
+                                </div>
+                                <i class="fas fa-chevron-down dropdown-icon text-gray-500 ml-4"></i>
+                            </div>
+                             <div class="menu-dropdown px-4">
+                                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4">
+                                     <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrhzb6v-GXxlVqstOZO-NTln-sIrXtOCqHYtaZg0mXAti41GIwSkTfQBe0FVNvhqX7skPMXGHYp3RlhR1qEDQPnPcx0MsK5WwosR772aMbEXQSAcTYWXOuADR2sjFJOk6ttfwcq=s680-w680-h510-rw" alt="Pisang Bakar 1" class="rounded-lg aspect-square object-cover">
+                                     <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npU3MVrYozZN4mwZoYbkKfjPZbgU1Wko4Ob5kq9AD7ZlSB4h42CQBi329Saqspx66ns-ECwQHtEjBW5YQG_J-ueyCsv5X9AOTY_JcnSkxpXPme92jQpRkKCj6tOzEmONy_IfIgQ=s680-w680-h510-rw" alt="Jagung Bakar 1" class="rounded-lg aspect-square object-cover">
+                                     <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqZP0hfYZdeHKbI8rtz9oOrjZbjUxNAybMy4eIHjg_4Rtb6zHMbYbCzto7lNKfe_bpsym2wp88XpKOCwrC_YL16mNT_XDLnsXXIle5f6Z3qrDnNO28ySG6VBA0uDk1Lcp5IGRdw4Q=s680-w680-h510-rw" alt="Cemilan Bakar 3" class="rounded-lg aspect-square object-cover">
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light dark:bg-dark p-8 rounded-2xl shadow-lg text-center scroll-reveal border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-3xl font-serif text-secondary mb-8 pb-4 border-b-2 border-dashed border-primary/50">Menu Lengkap</h3>
+                    <div class="custom-carousel relative w-full max-w-xs mx-auto">
+                        <div class="carousel-container overflow-hidden rounded-lg shadow-inner">
+                            <div class="carousel-slide flex">
+                                <img src="images/images/menu1.png" alt="Daftar Menu Halaman 1" class="w-full flex-shrink-0">
+                                <img src="images/images/menu2.jpg" alt="Daftar Menu Halaman 2" class="w-full flex-shrink-0">
+                                <img src="images/images/menu3.jpg" alt="Daftar Menu Halaman 3" class="w-full flex-shrink-0">
+                                <img src="images/images/menu4.jpg" alt="Daftar Menu Halaman 4" class="w-full flex-shrink-0">
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 bg-dark/50 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-dark/70 transition-colors z-10" aria-label="Previous Menu">❮</button>
+                        <button class="carousel-btn next absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 bg-dark/50 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-dark/70 transition-colors z-10" aria-label="Next Menu">❯</button>
+                        <div class="carousel-dots flex justify-center space-x-2 mt-6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Menu Section End -->
+    
+    <!-- ============== ABOUT SECTION ============== -->
+    <!-- About Section Start -->
+    <section id="about" class="py-24 bg-light dark:bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="scroll-reveal">
+                    <h2 class="text-4xl font-serif text-secondary mb-8">Kenapa Memilih Beverly Hills?</h2>
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-check-circle text-primary text-3xl mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Susu Segar 100% Murni</h4>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Kami berkomitmen menggunakan susu segar langsung dari peternak lokal untuk menjamin kesegaran alami dalam setiap sajian.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-check-circle text-primary text-3xl mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Cemilan Lezat & Berkualitas</h4>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Semua cemilan dibuat dengan bahan-bahan pilihan, resep otentik, dan tanpa bahan pengawet berbahaya.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-check-circle text-primary text-3xl mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Pilihan Sehat Untuk Keluarga</h4>
+                                <p class="text-gray-600 dark:text-gray-400 mt-1">Menawarkan produk yang menyehatkan, aman dikonsumsi segala usia, dan penuh kebaikan alami untuk Anda dan keluarga.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 scroll-reveal">
+                    <img src="images/images/1.jpg" alt="Aneka Roti Bakar" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover aspect-square">
+                    <img src="images/images/2.jpg" alt="Roti Bakar Omelette Beef premium khas Beverly Hills Jogja" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover aspect-square mt-8">
+                    <img src="images/images/3.jpg" alt="Susu Murni Segar Jogja disajikan dalam gelas" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover aspect-square">
+                    <img src="images/images/4.jpg" alt="Sajian mie kuah susu" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover aspect-square mt-8">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section End -->
+
+    <!-- ============== CERTIFICATION SECTION ============== -->
+    <!-- Certification Section Start -->
+    <section id="certification" class="py-24 bg-white dark:bg-dark-accent/50">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-serif text-secondary">Sertifikasi & Kepercayaan</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">Komitmen kami untuk kualitas dan keamanan produk yang terjamin.</p>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                <div class="cert-badge bg-white dark:bg-dark p-4 rounded-lg shadow-lg cursor-pointer scroll-reveal border border-gray-200 dark:border-gray-700" onclick="openModal('images/images/halal.jpg')" role="button" tabindex="0">
+                    <img src="images/images/halal.jpg" alt="Sertifikat Halal MUI Roti Bakar Beverly Hills" class="h-32 md:h-40 w-auto">
+                </div>
+                <div class="cert-badge bg-white dark:bg-dark p-4 rounded-lg shadow-lg cursor-pointer scroll-reveal border border-gray-200 dark:border-gray-700" onclick="openModal('images/images/halal2.png')" role="button" tabindex="0">
+                    <img src="images/images/halal2.png" alt="Sertifikasi Keamanan Pangan" class="h-32 md:h-40 w-auto">
+                </div>
+                <div class="cert-badge bg-white dark:bg-dark p-4 rounded-lg shadow-lg cursor-pointer scroll-reveal border border-gray-200 dark:border-gray-700" onclick="openModal('images/images/halal3.png')" role="button" tabindex="0">
+                    <img src="images/images/halal3.png" alt="Sertifikasi HACCP" class="h-32 md:h-40 w-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Certification Section End -->
+
+    <!-- ============== REVIEWS SECTION ============== -->
+    <!-- Reviews Section Start -->
+        <section id="reviews" class="py-24 bg-light scroll-mt-24" style="background-image: url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23d4af37%22 fill-opacity=%220.04%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
     <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
-                <div class="text-center mb-12 scroll-reveal">
-                    <h2 class="text-4xl md:text-5xl font-serif text-secondary">Dari Hati Pelanggan Kami</h2>
+                <div class="text-center lg:text-left mb-12 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-serif text-secondary">Dari Hati Pelanggan Kami</h2>
                 </div>
-                <div class="custom-carousel relative max-w-4xl mx-auto scroll-reveal">
+                <div class="custom-carousel relative max-w-2xl mx-auto scroll-reveal">
                     <div class="carousel-container overflow-hidden">
                         <div class="carousel-slide flex">
-                            <div class="w-full flex-shrink-0 px-4">
-                                <div class="testimonial-card-bg p-8 rounded-xl shadow-lg text-center relative overflow-hidden h-full flex flex-col justify-center">
+                            <div class="w-full flex-shrink-0 px-2">
+                                <div class="testimonial-card-bg p-8 rounded-xl shadow-lg text-center relative overflow-hidden h-full flex flex-col justify-center border border-gray-200">
                                     <i class="fas fa-quote-left text-primary/10 text-8xl absolute -top-2 -left-2 transform -rotate-12"></i>
                                     <img src="https://i.pinimg.com/736x/4f/4c/16/4f4c164c469ebd6e2c1166216b257235.jpg" alt="Ulasan dari Joy Raphaela" class="w-24 h-24 mx-auto rounded-full border-4 border-primary mb-4 shadow-md">
                                     <div class="text-yellow-400 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
@@ -244,8 +494,8 @@
                                     <h4 class="font-bold text-xl text-gray-800">Joy Raphaela</h4>
                                 </div>
                             </div>
-                            <div class="w-full flex-shrink-0 px-4">
-                                <div class="testimonial-card-bg p-8 rounded-xl shadow-lg text-center relative overflow-hidden h-full flex flex-col justify-center">
+                            <div class="w-full flex-shrink-0 px-2">
+                                <div class="testimonial-card-bg p-8 rounded-xl shadow-lg text-center relative overflow-hidden h-full flex flex-col justify-center border border-gray-200">
                                     <i class="fas fa-quote-left text-primary/10 text-8xl absolute -top-2 -left-2 transform -rotate-12"></i>
                                     <img src="https://i.pinimg.com/736x/a9/39/f9/a939f9c7804b7d7d382248665722b15a.jpg" alt="Ulasan dari Meila Diva Z.P" class="w-24 h-24 mx-auto rounded-full border-4 border-primary mb-4 shadow-md">
                                     <div class="text-yellow-400 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
@@ -253,322 +503,491 @@
                                     <h4 class="font-bold text-xl text-gray-800">Meila Diva Z.P</h4>
                                 </div>
                             </div>
-                            <div class="w-full flex-shrink-0 px-4">
-                                <div class="testimonial-card-bg p-8 rounded-xl shadow-lg text-center relative overflow-hidden h-full flex flex-col justify-center">
-                                    <i class="fas fa-quote-left text-primary/10 text-8xl absolute -top-2 -left-2 transform -rotate-12"></i>
-                                    <img src="https://i.pinimg.com/736x/81/f2/97/81f2978f534d77c74aff7e4cecd47ae6.jpg" alt="Ulasan dari Athaya Fauziyah" class="w-24 h-24 mx-auto rounded-full border-4 border-primary mb-4 shadow-md">
-                                    <div class="text-yellow-400 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                                    <p class="text-gray-600 italic text-lg mb-4">"Mie kuah susunya itu lho, creamy tapi gak bikin eneg. Cocok banget buat makan malem-malem pas udara dingin. Recommended!"</p>
-                                    <h4 class="font-bold text-xl text-gray-800">Athaya Fauziyah</h4>
-                                </div>
-                            </div>
-                            <div class="w-full flex-shrink-0 px-4">
-                                <div class="testimonial-card-bg p-8 rounded-xl shadow-lg text-center relative overflow-hidden h-full flex flex-col justify-center">
-                                    <i class="fas fa-quote-left text-primary/10 text-8xl absolute -top-2 -left-2 transform -rotate-12"></i>
-                                    <img src="https://i.pinimg.com/736x/cf/7c/db/cf7cdb0c2b266094ac158f8b38419a16.jpg" alt="Ulasan dari Achlis Mufidatul L" class="w-24 h-24 mx-auto rounded-full border-4 border-primary mb-4 shadow-md">
-                                    <div class="text-yellow-400 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                                    <p class="text-gray-600 italic text-lg mb-4">"Pilihan rasanya banyak dan harganya sangat terjangkau. Suka banget sama pisang bakar coklat kejunya."</p>
-                                    <h4 class="font-bold text-xl text-gray-800">Achlis Mufidatul L</h4>
-                                </div>
-                            </div>
-                            <div class="w-full flex-shrink-0 px-4">
-                                <div class="testimonial-card-bg p-8 rounded-xl shadow-lg text-center relative overflow-hidden h-full flex flex-col justify-center">
-                                    <i class="fas fa-quote-left text-primary/10 text-8xl absolute -top-2 -left-2 transform -rotate-12"></i>
-                                    <img src="https://i.pinimg.com/736x/8e/c5/d0/8ec5d0643e93cb05ab0b50fa48b51e89.jpg" alt="Ulasan dari Fema Kusumaningtyas" class="w-24 h-24 mx-auto rounded-full border-4 border-primary mb-4 shadow-md">
-                                    <div class="text-yellow-400 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                                    <p class="text-gray-600 italic text-lg mb-4">"Sebagai pecinta susu, susu murni di sini beda dari yang lain. Segar dan kualitasnya terasa premium. Pasti balik lagi!"</p>
-                                    <h4 class="font-bold text-xl text-gray-800">Fema Kusumaningtyas</h4>
-                                </div>
-                            </div>
+                             <div class="w-full flex-shrink-0 px-2">
+                                 <div class="testimonial-card-bg p-8 rounded-xl shadow-lg text-center relative overflow-hidden h-full flex flex-col justify-center border border-gray-200">
+                                     <i class="fas fa-quote-left text-primary/10 text-8xl absolute -top-2 -left-2 transform -rotate-12"></i>
+                                     <img src="https://i.pinimg.com/736x/81/f2/97/81f2978f534d77c74aff7e4cecd47ae6.jpg" alt="Ulasan dari Athaya Fauziyah" class="w-24 h-24 mx-auto rounded-full border-4 border-primary mb-4 shadow-md">
+                                     <div class="text-yellow-400 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                                     <p class="text-gray-600 italic text-lg mb-4">"Mie kuah susunya itu lho, creamy tapi gak bikin eneg. Cocok banget buat makan malem-malem pas udara dingin. Recommended!"</p>
+                                     <h4 class="font-bold text-xl text-gray-800">Athaya Fauziyah</h4>
+                                 </div>
+                             </div>
+                             <div class="w-full flex-shrink-0 px-2">
+                                 <div class="testimonial-card-bg p-8 rounded-xl shadow-lg text-center relative overflow-hidden h-full flex flex-col justify-center border border-gray-200">
+                                     <i class="fas fa-quote-left text-primary/10 text-8xl absolute -top-2 -left-2 transform -rotate-12"></i>
+                                     <img src="https://i.pinimg.com/736x/cf/7c/db/cf7cdb0c2b266094ac158f8b38419a16.jpg" alt="Ulasan dari Achlis Mufidatul L" class="w-24 h-24 mx-auto rounded-full border-4 border-primary mb-4 shadow-md">
+                                     <div class="text-yellow-400 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                     <p class="text-gray-600 italic text-lg mb-4">"Pilihan rasanya banyak dan harganya sangat terjangkau. Suka banget sama pisang bakar coklat kejunya."</p>
+                                     <h4 class="font-bold text-xl text-gray-800">Achlis Mufidatul L</h4>
+                                 </div>
+                             </div>
+                             <div class="w-full flex-shrink-0 px-2">
+                                 <div class="testimonial-card-bg p-8 rounded-xl shadow-lg text-center relative overflow-hidden h-full flex flex-col justify-center border border-gray-200">
+                                     <i class="fas fa-quote-left text-primary/10 text-8xl absolute -top-2 -left-2 transform -rotate-12"></i>
+                                     <img src="https://i.pinimg.com/736x/8e/c5/d0/8ec5d0643e93cb05ab0b50fa48b51e89.jpg" alt="Ulasan dari Fema Kusumaningtyas" class="w-24 h-24 mx-auto rounded-full border-4 border-primary mb-4 shadow-md">
+                                     <div class="text-yellow-400 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                     <p class="text-gray-600 italic text-lg mb-4">"Sebagai pecinta susu, susu murni di sini beda dari yang lain. Segar dan kualitasnya terasa premium. Pasti balik lagi!"</p>
+                                     <h4 class="font-bold text-xl text-gray-800">Fema Kusumaningtyas</h4>
+                                 </div>
+                             </div>
                         </div>
                     </div>
-                    <button class="carousel-btn prev absolute top-1/2 left-0 -translate-y-1/2 bg-black/40 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/60 transition-colors" aria-label="Previous Testimonial">❮</button>
-                    <button class="carousel-btn next absolute top-1/2 right-0 -translate-y-1/2 bg-black/40 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/60 transition-colors" aria-label="Next Testimonial">❯</button>
-                    <div class="carousel-dots flex justify-center space-x-2 mt-6"></div>
+                    <button class="carousel-btn prev absolute top-1/2 left-0 -translate-y-1/2 bg-dark/40 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-dark/60 transition-colors" aria-label="Previous Testimonial">❮</button>
+                    <button class="carousel-btn next absolute top-1/2 right-0 -translate-y-1/2 bg-dark/40 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-dark/60 transition-colors" aria-label="Next Testimonial">❯</button>
+                    <div class="carousel-dots flex justify-center lg:justify-start space-x-2 mt-8"></div>
                 </div>
             </div>
 
-            <div id="feedback" class="scroll-mt-24">
-                <div class="text-center mb-12 scroll-reveal">
-                    <h2 class="text-4xl md:text-5xl font-serif text-secondary">Berikan Saran & Masukan</h2>
-                    <p class="max-w-2xl mx-auto mt-4 text-gray-600">Terinspirasi oleh ulasan lain? Kami ingin mendengar pendapat Anda juga!</p>
-                </div>
-                <form id="feedbackForm" class="bg-white p-8 md:p-10 rounded-2xl shadow-2xl space-y-6 scroll-reveal">
-                    <div>
-                        <label for="name" class="block mb-2 font-semibold text-gray-700">Nama Anda</label>
-                        <input type="text" id="name" name="name" placeholder="Contoh: Budi Santoso" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+                <div id="feedback" class="scroll-mt-24">
+                    <div class="text-center lg:text-left mb-12 scroll-reveal">
+                        <h2 class="text-4xl md:text-5xl font-serif text-secondary">Berikan Ulasan Anda</h2>
+                        <p class="mx-auto lg:mx-0 mt-4 text-gray-600 dark:text-gray-400">Pendapat Anda sangat berarti untuk kami.</p>
                     </div>
-                    <div>
-                        <label for="email" class="block mb-2 font-semibold text-gray-700">Alamat Email</label>
-                        <input type="email" id="email" name="email" placeholder="Contoh: budi@email.com" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
-                    </div>
-                    <div>
-                        <label id="rating-label" class="block mb-2 font-semibold text-gray-700 transition-colors">Rating Anda</label>
-                        <div class="star-rating flex items-center text-3xl">
-                            <i class="fas fa-star" data-value="1"></i>
-                            <i class="fas fa-star" data-value="2"></i>
-                            <i class="fas fa-star" data-value="3"></i>
-                            <i class="fas fa-star" data-value="4"></i>
-                            <i class="fas fa-star" data-value="5"></i>
+                    <form id="feedbackForm" class="bg-white dark:bg-dark-accent p-8 md:p-10 rounded-2xl shadow-2xl space-y-6 scroll-reveal border border-gray-200 dark:border-gray-700">
+                        <div>
+                            <label for="name" class="block mb-2 font-semibold text-gray-700 dark:text-gray-300">Nama Anda</label>
+                            <input type="text" id="name" name="name" placeholder="Contoh: Budi Santoso" required class="w-full px-4 py-3 bg-light dark:bg-dark border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors dark:text-gray-200 placeholder:text-gray-500">
                         </div>
-                        <input type="hidden" name="rating" id="rating" value="0" required>
-                    </div>
-                    <div>
-                        <label for="message" class="block mb-2 font-semibold text-gray-700">Saran & Masukan Anda</label>
-                        <textarea id="message" name="message" placeholder="Tuliskan masukan Anda di sini..." required rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors resize-none"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-primary text-dark font-bold py-4 px-8 rounded-full uppercase tracking-wider hover:bg-primary-dark transition-all duration-300 transform hover:scale-105 shadow-lg text-lg">Kirim Masukan</button>
-                </form>
+                        <div>
+                            <label for="email" class="block mb-2 font-semibold text-gray-700 dark:text-gray-300">Alamat Email</label>
+                            <input type="email" id="email" name="email" placeholder="Contoh: budi@email.com" required class="w-full px-4 py-3 bg-light dark:bg-dark border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors dark:text-gray-200 placeholder:text-gray-500">
+                        </div>
+                        <div>
+                            <label id="rating-label" class="block mb-2 font-semibold text-gray-700 dark:text-gray-300 transition-colors">Rating Anda</label>
+                            <div class="star-rating flex items-center text-3xl space-x-1">
+                                <i class="fas fa-star" data-value="1" aria-label="Beri 1 bintang"></i>
+                                <i class="fas fa-star" data-value="2" aria-label="Beri 2 bintang"></i>
+                                <i class="fas fa-star" data-value="3" aria-label="Beri 3 bintang"></i>
+                                <i class="fas fa-star" data-value="4" aria-label="Beri 4 bintang"></i>
+                                <i class="fas fa-star" data-value="5" aria-label="Beri 5 bintang"></i>
+                            </div>
+                            <input type="hidden" name="rating" id="rating" value="0" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2 font-semibold text-gray-700 dark:text-gray-300">Ulasan Anda</label>
+                            <textarea id="message" name="message" placeholder="Tuliskan ulasan Anda di sini..." required rows="5" class="w-full px-4 py-3 bg-light dark:bg-dark border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors resize-none dark:text-gray-200 placeholder:text-gray-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-lg" aria-label="Kirim Ulasan Anda">Kirim Ulasan</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <!-- Reviews Section End -->
 
-<footer id="contact" class="bg-dark text-gray-300 pt-20">
+</main>
+
+<!-- ============== FOOTER ============== -->
+<!-- Footer Start -->
+<footer id="contact" class="bg-dark-accent text-gray-300 pt-24">
     <div class="container mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-12 mb-12">
+        <div class="grid lg:grid-cols-2 gap-16 mb-12">
             <div class="scroll-reveal">
-                <h3 class="text-2xl font-serif text-primary mb-6">Temukan Kami di Sini</h3>
-                <div class="rounded-lg overflow-hidden shadow-lg h-80">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0494493392383!2d110.3809015153549!3d-7.784601994390099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a598491840845%3A0x867576203541d46!2sRoti%20Bakar%20dan%20Susu%20Beverly%20Hills!5e0!3m2!1sen!2sid!4v1672834321098!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <h3 class="text-3xl font-serif text-primary mb-6">Temukan Kami di Sini</h3>
+                <div class="rounded-lg overflow-hidden shadow-lg h-80 border-2 border-primary/20">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0494493392383!2d110.3809015153549!3d-7.784601994390099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a598491840845%3A0x867576203541d46!2sRoti%20Bakar%20dan%20Susu%20Beverly%20Hills!5e0!3m2!1sen!2sid!4v1672834321098!5m2!1sen!2sid" title="Peta Lokasi Roti Bakar Beverly Hills" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="dark:grayscale dark:contrast-125"></iframe>
                 </div>
             </div>
             <div class="scroll-reveal">
-                <h3 class="text-2xl font-serif text-primary mb-6">Alamat & Kontak</h3>
-                <div class="space-y-4 text-gray-400">
+                <h3 class="text-3xl font-serif text-primary mb-6">Alamat & Kontak</h3>
+                <div class="space-y-6 text-gray-400">
                     <div>
-                        <a href="https://g.co/kgs/E41bDar" target="_blank" class="hover:text-primary transition-colors">
-                            <p class="font-bold text-gray-200 flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> Roti Bakar Gondokusuman:</p>
-                            <p class="pl-6">Jl. Urip Sumoharjo No.76 (21:30 - 03:00)</p>
+                        <a href="https://g.co/kgs/E41bDar" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors group">
+                            <p class="font-bold text-gray-200 flex items-center gap-3"><i class="fas fa-map-marker-alt w-5"></i> Roti Bakar Gondokusuman:</p>
+                            <p class="pl-8 group-hover:text-primary transition-colors">Jl. Urip Sumoharjo No.76 (21:30 - 03:00)</p>
                         </a>
                     </div>
                     <div>
-                        <a href="https://g.co/kgs/cdQ7pdN" target="_blank" class="hover:text-primary transition-colors">
-                            <p class="font-bold text-gray-200 flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> Roti Bakar Gejayan:</p>
-                            <p class="pl-6">Jl. Affandi, Condongcatur (17:00 - 00:00)</p>
+                        <a href="https://g.co/kgs/cdQ7pdN" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors group">
+                            <p class="font-bold text-gray-200 flex items-center gap-3"><i class="fas fa-map-marker-alt w-5"></i> Roti Bakar Gejayan:</p>
+                            <p class="pl-8 group-hover:text-primary transition-colors">Jl. Affandi, Condongcatur (17:00 - 00:00)</p>
                         </a>
                     </div>
                     <div>
-                         <a href="https://g.co/kgs/KtFtr3T" target="_blank" class="hover:text-primary transition-colors">
-                            <p class="font-bold text-gray-200 flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> Roti Bakar Maguwoharjo:</p>
-                            <p class="pl-6">Jl. Kepuhsari No.005 (17:00 - 00:00)</p>
-                        </a>
+                         <a href="https://g.co/kgs/KtFtr3T" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors group">
+                             <p class="font-bold text-gray-200 flex items-center gap-3"><i class="fas fa-map-marker-alt w-5"></i> Roti Bakar Maguwoharjo:</p>
+                             <p class="pl-8 group-hover:text-primary transition-colors">Jl. Kepuhsari No.005 (17:00 - 00:00)</p>
+                         </a>
                     </div>
-                    <p><i class="fas fa-phone w-6"></i> <a href="tel:+621234567890" class="hover:text-primary transition-colors">+62 123 4567 890</a></p>
-                    <p><i class="fas fa-envelope w-6"></i> <a href="mailto:info@rotibakarbeverly.com" class="hover:text-primary transition-colors">info@rotibakarbeverly.com</a></p>
+                    <p><i class="fas fa-phone w-8 text-center"></i> <a href="tel:+621234567890" class="hover:text-primary transition-colors">+62 123 4567 890</a></p>
+                    <p><i class="fas fa-envelope w-8 text-center"></i> <a href="mailto:info@rotibakarbeverly.com" class="hover:text-primary transition-colors">info@rotibakarbeverly.com</a></p>
                 </div>
-                <div class="mt-6 flex space-x-4">
-                    <a href="https://www.instagram.com/beverlyhills1994/" target="_blank" aria-label="Instagram" class="text-2xl hover:text-primary transition-transform hover:scale-110"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@beverlyhills1994" target="_blank" aria-label="TikTok" class="text-2xl hover:text-primary transition-transform hover:scale-110"><i class="fab fa-tiktok"></i></a>
+                <div class="mt-8 flex space-x-4">
+                    <a href="https://www.instagram.com/beverlyhills1994/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-2xl hover:text-primary transition-transform hover:scale-110"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@beverlyhills1994" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-2xl hover:text-primary transition-transform hover:scale-110"><i class="fab fa-tiktok"></i></a>
                 </div>
-                <h3 class="text-xl font-serif text-primary mt-8 mb-4">Pesan via Aplikasi Favoritmu!</h3>
-                <div class="flex items-center gap-6">
-                    <a href="https://gofood.co.id/search?search=Roti+Bakar+Beverly+Hills&q=+roti+bakar+beverly+hills+jogja&isHistory=true" target="_blank" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white font-bold py-3 px-6 rounded-full uppercase tracking-wide hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <h3 class="text-2xl font-serif text-primary mt-10 mb-4">Pesan via Aplikasi Favoritmu!</h3>
+                <div class="flex flex-wrap items-center gap-4">
+                    <a href="https://gofood.co.id/search?search=Roti+Bakar+Beverly+Hills&q=+roti+bakar+beverly+hills+jogja&isHistory=true" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white font-bold py-3 px-6 rounded-full uppercase tracking-wide hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
                         <i class="fas fa-motorcycle"></i> Pesan di GoFood
                     </a>
                 </div>
             </div>
         </div>
-        <div class="border-t border-gray-700 py-6 text-center text-gray-500 text-sm">
+        <div class="border-t border-gray-700 py-8 text-center text-gray-500 text-sm">
             <p>© 2025 Roti Bakar Beverly Hills Jogjakarta. All Rights Reserved. | <a href="#" class="hover:text-primary">Kebijakan Privasi</a></p>
         </div>
     </div>
 </footer>
+<!-- Footer End -->
 
-<div id="certModal" class="fixed inset-0 bg-black/90 z-[100] hidden items-center justify-center p-4" onclick="closeModal()">
-    <div class="relative max-w-lg w-full">
-        <button class="absolute -top-4 -right-4 text-white text-3xl bg-secondary rounded-full w-10 h-10" onclick="closeModal()">×</button>
+<!-- ============== MODALS ============== -->
+<!-- Modals Start -->
+<div id="certModal" class="fixed inset-0 bg-black/90 z-[100] hidden items-center justify-center p-4 transition-opacity duration-300" role="dialog" aria-modal="true">
+    <div class="relative max-w-lg w-full bg-white dark:bg-dark-accent rounded-lg shadow-2xl" id="modalContent">
+        <button id="modalCloseBtn" class="absolute -top-3 -right-3 text-white text-xl bg-secondary rounded-full w-10 h-10 flex items-center justify-center z-10 hover:bg-red-800 transition-colors" aria-label="Tutup modal">×</button>
         <img id="modalImage" src="" alt="Gambar Sertifikat yang Diperbesar" class="w-full h-auto rounded-lg">
     </div>
 </div>
 
-<div id="thanks-popup" class="fixed inset-0 bg-black/70 z-[100] hidden items-center justify-center p-4">
-    <div class="bg-white p-8 rounded-xl shadow-2xl text-center max-w-sm w-full transform transition-transform scale-95">
+<div id="thanks-popup" class="fixed inset-0 bg-black/70 z-[100] hidden items-center justify-center p-4" role="alertdialog" aria-modal="true">
+    <div class="bg-white dark:bg-dark-accent p-8 rounded-xl shadow-2xl text-center max-w-sm w-full transform transition-transform scale-95">
         <div class="text-6xl text-green-500 mb-4"><i class="fas fa-check-circle"></i></div>
-        <h3 class="text-3xl font-serif text-gray-800 mb-2">Terkirim!</h3>
-        <p class="text-gray-600 mb-6">Terima kasih atas saran dan masukan Anda!</p>
+        <h3 class="text-3xl font-serif text-gray-800 dark:text-gray-200 mb-2">Terkirim!</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">Terima kasih atas ulasan Anda!</p>
         <button id="popup-close" class="bg-secondary text-white font-bold py-2 px-6 rounded-full hover:bg-red-800 transition-colors">Tutup</button>
     </div>
 </div>
+<!-- Modals End -->
 
+<!-- ============== JAVASCRIPT ============== -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const header = document.getElementById('header');
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-    if (header) {
+    /**
+     * Inisialisasi semua fungsi utama setelah DOM dimuat.
+     */
+    function main() {
+        initPreloader();
+        initDarkMode();
+        initHeaderScroll();
+        initMobileMenu();
+        initCarousels();
+        initScrollReveal();
+        initMenuDropdown();
+        initModals();
+        initFeedbackForm();
+        initGlobalKeyListener();
+    }
+
+    /**
+     * Menangani preloader.
+     * Halaman disembunyikan via CSS dan ditampilkan saat semua konten dimuat.
+     */
+    function initPreloader() {
+        const preloader = document.getElementById('preloader');
+        window.addEventListener('load', () => {
+            if (preloader) {
+                preloader.classList.add('hidden');
+            }
+            document.body.classList.add('loaded');
+        });
+    }
+
+    /**
+     * Menangani fungsionalitas Dark Mode.
+     * Memeriksa localStorage atau preferensi sistem dan menambahkan event listener ke tombol toggle.
+     */
+    function initDarkMode() {
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (!themeToggleBtn || !themeToggleDarkIcon || !themeToggleLightIcon) return;
+
+        // Atur tema awal saat memuat
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        // Tambahkan listener ke tombol toggle
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+        });
+    }
+
+    /**
+     * Menambahkan efek bayangan pada header saat scroll.
+     */
+    function initHeaderScroll() {
+        const header = document.getElementById('header');
+        if (!header) return;
+        
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('py-2', 'shadow-xl');
-                header.classList.remove('py-4');
+            header.classList.toggle('shadow-xl', window.scrollY > 50);
+            header.classList.toggle('py-2', window.scrollY > 50);
+            header.classList.toggle('py-3', window.scrollY <= 50);
+        });
+    }
+
+    /**
+     * Menangani menu navigasi mobile (hamburger).
+     */
+    function initMobileMenu() {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        const mobileMenuIcon = mobileMenuBtn ? mobileMenuBtn.querySelector('i') : null;
+
+        if (!mobileMenuBtn || !mobileMenu || !mobileMenuIcon) return;
+
+        const toggleMenu = (forceClose = false) => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (forceClose || !isHidden) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.classList.replace('fa-times', 'fa-bars');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             } else {
-                header.classList.remove('py-2', 'shadow-xl');
-                header.classList.add('py-4');
-            }
-        });
-    }
-
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
-    
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
-    });
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
-
-    document.querySelectorAll('.custom-carousel').forEach(carousel => {
-        const slide = carousel.querySelector('.carousel-slide');
-        if (!slide) return;
-        const items = slide.children;
-        const prevBtn = carousel.querySelector('.prev');
-        const nextBtn = carousel.querySelector('.next');
-        const dotsContainer = carousel.querySelector('.carousel-dots');
-        if (items.length <= 1) {
-            if (prevBtn) prevBtn.style.display = 'none';
-            if (nextBtn) nextBtn.style.display = 'none';
-            if (dotsContainer) dotsContainer.style.display = 'none';
-            return;
-        }
-        let counter = 0;
-        let dots = [];
-        if (dotsContainer) {
-            dotsContainer.innerHTML = '';
-            for (let i = 0; i < items.length; i++) {
-                const dot = document.createElement('span');
-                dot.classList.add('dot', 'w-3', 'h-3', 'bg-gray-300', 'rounded-full', 'cursor-pointer', 'transition-all', 'duration-300');
-                dot.addEventListener('click', () => {
-                    counter = i;
-                    updateCarousel();
-                });
-                dotsContainer.appendChild(dot);
-                dots.push(dot);
-            }
-        }
-        const updateCarousel = () => {
-            slide.style.transform = `translateX(${-slide.clientWidth * counter}px)`;
-            if (dots.length > 0) {
-                dots.forEach((dot, i) => dot.classList.toggle('active', i === counter));
+                mobileMenu.classList.remove('hidden');
+                mobileMenuIcon.classList.replace('fa-bars', 'fa-times');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
             }
         };
-        nextBtn.addEventListener('click', () => {
-            counter = (counter + 1) % items.length;
-            updateCarousel();
-        });
-        prevBtn.addEventListener('click', () => {
-            counter = (counter - 1 + items.length) % items.length;
-            updateCarousel();
-        });
-        let autoSlide = setInterval(() => nextBtn.click(), 5000);
-        carousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
-        carousel.addEventListener('mouseleave', () => autoSlide = setInterval(() => nextBtn.click(), 5000));
-        window.addEventListener('resize', updateCarousel);
-        updateCarousel();
-    });
 
-    const certModal = document.getElementById('certModal');
-    const modalImage = document.getElementById('modalImage');
-    window.openModal = function(imageSrc) {
-        if (certModal && modalImage) {
-            modalImage.src = imageSrc;
-            certModal.classList.remove('hidden');
-            certModal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        mobileNavLinks.forEach(link => link.addEventListener('click', () => toggleMenu(true)));
+        
+        // Tutup menu saat mengklik di luar header
+        document.addEventListener('click', (e) => {
+          if (!mobileMenu.classList.contains('hidden') && !header.contains(e.target)) {
+              toggleMenu(true);
+          }
+        });
     }
-    window.closeModal = function(event) {
-        if (certModal && (event.target === certModal || event.target.tagName === 'BUTTON' || event.target.parentElement.tagName === 'BUTTON')) {
-            certModal.classList.add('hidden');
-            certModal.classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
+
+    /**
+     * Inisialisasi semua carousel di halaman.
+     */
+    function initCarousels() {
+        document.querySelectorAll('.custom-carousel').forEach(carousel => {
+            const slide = carousel.querySelector('.carousel-slide');
+            if (!slide || slide.children.length <= 1) return;
+            
+            const items = slide.children;
+            const prevBtn = carousel.querySelector('.prev');
+            const nextBtn = carousel.querySelector('.next');
+            const dotsContainer = carousel.querySelector('.carousel-dots');
+            let counter = 0;
+            let dots = [];
+            const heroContents = carousel.querySelectorAll('.hero-content');
+            const autoSlideInterval = carousel.id === 'home' ? 7000 : 5000;
+            let autoSlide;
+
+            const updateCarousel = () => {
+                slide.style.transform = `translateX(${-slide.clientWidth * counter}px)`;
+                if (heroContents.length > 0) heroContents.forEach((c, i) => c.classList.toggle('visible', i === counter));
+                if (dots.length > 0) dots.forEach((d, i) => d.classList.toggle('active', i === counter));
+            };
+            
+            const nextSlide = () => { counter = (counter + 1) % items.length; updateCarousel(); };
+            const prevSlide = () => { counter = (counter - 1 + items.length) % items.length; updateCarousel(); };
+            
+            if (dotsContainer) {
+                for (let i = 0; i < items.length; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'dot w-3 h-3 bg-gray-300 dark:bg-gray-600 rounded-full cursor-pointer transition-all duration-300';
+                    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                    dot.addEventListener('click', () => { counter = i; updateCarousel(); });
+                    dotsContainer.appendChild(dot);
+                    dots.push(dot);
+                }
+            }
+            
+            if(nextBtn) nextBtn.addEventListener('click', nextSlide);
+            if(prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+            const startAutoSlide = () => autoSlide = setInterval(nextSlide, autoSlideInterval);
+            const stopAutoSlide = () => clearInterval(autoSlide);
+
+            carousel.addEventListener('mouseenter', stopAutoSlide);
+            carousel.addEventListener('mouseleave', startAutoSlide);
+            
+            window.addEventListener('resize', updateCarousel);
+            updateCarousel();
+            startAutoSlide();
+        });
+    }
+
+    /**
+     * Mengamati elemen untuk animasi saat masuk ke viewport.
+     * Menerapkan efek staggered (muncul satu per satu) untuk elemen anak.
+     */
+    function initScrollReveal() {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Temukan semua elemen .scroll-reveal di dalam section yang terlihat
+                    const children = entry.target.querySelectorAll('.scroll-reveal');
+                    if (children.length > 0) {
+                        children.forEach((child, index) => {
+                            // Terapkan delay bertingkat untuk efek stagger
+                            setTimeout(() => {
+                                child.classList.add('visible');
+                            }, index * 200); // UPDATED: Stagger delay disesuaikan
+                        });
+                    } else {
+                        // Jika tidak ada children, animasikan parent-nya
+                         entry.target.classList.add('visible');
+                    }
+                    // Berhenti mengamati setelah animasi berjalan
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Amati setiap section dan footer
+        document.querySelectorAll('section, footer').forEach(el => revealObserver.observe(el));
+    }
+
+    /**
+     * Menangani fungsionalitas dropdown pada menu.
+     */
+    function initMenuDropdown() {
+        document.querySelectorAll('[data-menu-toggle]').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const dropdown = this.parentElement.querySelector('.menu-dropdown');
+                const icon = this.querySelector('.dropdown-icon');
+                const isExpanded = dropdown.style.maxHeight;
+
+                // Tutup semua dropdown lain
+                document.querySelectorAll('.menu-dropdown').forEach(d => {
+                    if (d !== dropdown) {
+                        d.style.maxHeight = null;
+                        d.closest('.menu-item-wrapper').querySelector('.dropdown-icon')?.classList.remove('rotate-180');
+                    }
+                });
+
+                // Toggle dropdown yang diklik
+                if (isExpanded) {
+                    dropdown.style.maxHeight = null;
+                    icon?.classList.remove('rotate-180');
+                } else {
+                    dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+                    icon?.classList.add('rotate-180');
+                }
+            });
+        });
     }
     
-    const feedbackForm = document.getElementById('feedbackForm');
-    const thanksPopup = document.getElementById('thanks-popup');
-    const popupCloseBtn = document.getElementById('popup-close');
-    const stars = document.querySelectorAll('.star-rating .fa-star');
-    const ratingInput = document.getElementById('rating');
-    const ratingLabel = document.getElementById('rating-label');
+    /**
+     * Menangani pembukaan dan penutupan semua modal.
+     */
+    function initModals() {
+        const certModal = document.getElementById('certModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        
+        window.openModal = function(imageSrc) {
+            if (certModal && modalImage) {
+                modalImage.src = imageSrc;
+                certModal.classList.remove('hidden');
+                certModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+                modalCloseBtn.focus();
+            }
+        }
 
-    stars.forEach(star => {
-        star.addEventListener('mouseover', function() {
-            const value = this.dataset.value;
-            stars.forEach(s => {
-                s.classList.toggle('selected', s.dataset.value <= value);
+        window.closeModal = function() {
+            if (certModal) {
+                certModal.classList.add('hidden');
+                certModal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        if (modalCloseBtn) modalCloseBtn.addEventListener('click', window.closeModal);
+        if (certModal) certModal.addEventListener('click', (e) => {
+            if (e.target === certModal) window.closeModal();
+        });
+    }
+
+    /**
+     * Menangani form feedback, rating bintang, dan popup "terima kasih".
+     */
+    function initFeedbackForm() {
+        const feedbackForm = document.getElementById('feedbackForm');
+        const thanksPopup = document.getElementById('thanks-popup');
+        const popupCloseBtn = document.getElementById('popup-close');
+        const stars = document.querySelectorAll('.star-rating .fa-star');
+        const ratingInput = document.getElementById('rating');
+        const ratingLabel = document.getElementById('rating-label');
+
+        if (!feedbackForm) return;
+
+        stars.forEach(star => {
+            const updateStars = (hoverValue) => stars.forEach(s => s.classList.toggle('selected', s.dataset.value <= hoverValue));
+            star.addEventListener('mouseover', () => updateStars(star.dataset.value));
+            star.addEventListener('mouseout', () => updateStars(ratingInput.value));
+            star.addEventListener('click', () => {
+                ratingInput.value = star.dataset.value;
+                ratingLabel.classList.remove('text-red-500');
+                updateStars(ratingInput.value);
             });
         });
-        star.addEventListener('mouseout', function() {
-            const selectedValue = ratingInput.value;
-            stars.forEach(s => {
-                s.classList.toggle('selected', s.dataset.value <= selectedValue);
-            });
-        });
-        star.addEventListener('click', function() {
-            ratingInput.value = this.dataset.value;
-            ratingLabel.classList.remove('text-red-500');
-        });
-    });
 
-    if (feedbackForm && thanksPopup) {
+        const closeThanksPopup = () => {
+            if(thanksPopup) {
+                thanksPopup.classList.add('hidden');
+                thanksPopup.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
         feedbackForm.addEventListener('submit', function(event) {
             event.preventDefault();
             if (ratingInput.value === "0") {
-                ratingLabel.classList.add('text-red-500');
-                setTimeout(() => ratingLabel.classList.remove('text-red-500'), 2000);
+                ratingLabel.classList.add('text-red-500', 'font-bold');
+                setTimeout(() => ratingLabel.classList.remove('text-red-500', 'font-bold'), 2000);
                 return;
             }
-            thanksPopup.classList.remove('hidden');
-            thanksPopup.classList.add('flex');
-            thanksPopup.querySelector('div').classList.add('scale-100');
-            document.body.style.overflow = 'hidden';
+            if (thanksPopup) {
+                thanksPopup.classList.remove('hidden');
+                thanksPopup.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+                popupCloseBtn.focus();
+            }
             feedbackForm.reset();
             ratingInput.value = "0";
             stars.forEach(s => s.classList.remove('selected'));
         });
+        
+        if (popupCloseBtn) popupCloseBtn.addEventListener('click', closeThanksPopup);
+        if (thanksPopup) thanksPopup.addEventListener('click', (e) => {
+            if (e.target === thanksPopup) closeThanksPopup();
+        });
     }
-    const closeThanksPopup = (event) => {
-        if(thanksPopup && (event.target === thanksPopup || event.target.id === 'popup-close')) {
-            thanksPopup.classList.add('hidden');
-            thanksPopup.classList.remove('flex');
-            thanksPopup.querySelector('div').classList.remove('scale-100');
-            document.body.style.overflow = 'auto';
-        }
+    
+    /**
+     * Menambahkan listener global untuk tombol Escape.
+     */
+    function initGlobalKeyListener() {
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                window.closeModal(); // Menutup modal sertifikat
+                document.getElementById('thanks-popup')?.classList.add('hidden'); // Menutup popup terima kasih
+                document.getElementById('thanks-popup')?.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+                if (!document.getElementById('mobile-menu').classList.contains('hidden')) {
+                    initMobileMenu().toggleMenu(true);
+                }
+            }
+        });
     }
-    if (popupCloseBtn) popupCloseBtn.addEventListener('click', closeThanksPopup);
-    if (thanksPopup) thanksPopup.addEventListener('click', closeThanksPopup);
 
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            const certModal = document.getElementById('certModal');
-            const thanksPopup = document.getElementById('thanks-popup');
-            if (certModal && !certModal.classList.contains('hidden')) {
-                 certModal.classList.add('hidden');
-                 certModal.classList.remove('flex');
-                 document.body.style.overflow = 'auto';
-            }
-            if (thanksPopup && !thanksPopup.classList.contains('hidden')) {
-                 thanksPopup.classList.add('hidden');
-                 thanksPopup.classList.remove('flex');
-                 document.body.style.overflow = 'auto';
-            }
-        }
-    });
+    // Jalankan fungsi utama
+    main();
 });
 </script>
 
