@@ -46,7 +46,7 @@
                         'primary-dark': '#c09b2e',
                         secondary: '#8b0000',
                         light: '#fdfbd4',
-                        dark: '#121212', // Slightly lighter black for depth
+                        dark: '#121212', 
                         'dark-accent': '#1e1e1e',
                     },
                     fontFamily: {
@@ -65,12 +65,10 @@
         body {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            opacity: 0; /* Initially hide body for preloader */
+            opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
-        body.loaded {
-            opacity: 1;
-        }
+        body.loaded { opacity: 1; }
         img { background-color: #e0e0e0; }
         img[alt] { text-align: center; line-height: 1.5; font-size: 0.9rem; color: #666; }
         
@@ -83,52 +81,23 @@
         
         /* === Preloader Animation === */
         #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #fdfbd4;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #fdfbd4; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
             transition: opacity 0.7s ease, visibility 0.7s ease;
         }
-        .dark #preloader {
-            background-color: #121212;
-        }
-        #preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loader {
-            font-size: 3rem;
-            animation: spin 1.5s linear infinite;
-        }
+        .dark #preloader { background-color: #121212; }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
+        .loader { font-size: 3rem; animation: spin 1.5s linear infinite; }
 
         /* === Animations & Transitions === */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 60px, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
+            from { opacity: 0; transform: translate3d(0, 60px, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
         }
-        .scroll-reveal { 
-            opacity: 0;
-        }
-        /* UPDATED: Refined animation timing and easing for a smoother effect */
-        .scroll-reveal.visible {
-            animation: fadeInUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        }
+        .scroll-reveal { opacity: 0; }
+        .scroll-reveal.visible { animation: fadeInUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
         
         .carousel-slide { transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); }
         .dot.active { background-color: #d4af37; transform: scale(1.25); }
@@ -148,12 +117,8 @@
         .dark .testimonial-card-bg:hover, .dark .cert-badge:hover, .dark .menu-item-hover:hover {
              box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
         }
-        .gallery-img {
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .gallery-img:hover {
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-        }
+        .gallery-img { transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+        .gallery-img:hover { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
         .gallery-img:nth-child(1):hover { transform: scale(1.05) rotate(-2deg); }
         .gallery-img:nth-child(2):hover { transform: scale(1.05) rotate(2deg); }
         .gallery-img:nth-child(3):hover { transform: scale(1.05) rotate(2deg); }
@@ -167,34 +132,22 @@
         }
         .animate-pulse-primary { box-shadow: 0 0 0 0 rgba(212, 175, 55, 1); animation: pulse 2s infinite; }
         
-        .btn-primary, .btn-secondary {
-            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-            transform: perspective(1px) translateZ(0);
-        }
+        .btn-primary, .btn-secondary { transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); transform: perspective(1px) translateZ(0); }
         .btn-primary {
-            background-color: #d4af37; color: #1a1a1a; font-weight: bold;
-            padding: 0.75rem 2rem; border-radius: 9999px; text-transform: uppercase;
-            letter-spacing: 0.05em; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: #d4af37; color: #1a1a1a; font-weight: bold; padding: 0.75rem 2rem;
+            border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .btn-primary:hover {
-            background-color: #c09b2e; transform: scale(1.05);
-            box-shadow: 0 7px 14px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.08);
-        }
+        .btn-primary:hover { background-color: #c09b2e; transform: scale(1.05); box-shadow: 0 7px 14px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.08); }
         .btn-secondary {
-            background-color: transparent; color: #d4af37; border: 2px solid #d4af37;
-            padding: 0.75rem 2rem; border-radius: 9999px; text-transform: uppercase;
-            letter-spacing: 0.05em;
+            background-color: transparent; color: #d4af37; border: 2px solid #d4af37; padding: 0.75rem 2rem;
+            border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;
         }
-        .btn-secondary:hover {
-            background-color: #d4af37; color: #1a1a1a; transform: scale(1.05);
-            box-shadow: 0 7px 14px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.08);
-        }
+        .btn-secondary:hover { background-color: #d4af37; color: #1a1a1a; transform: scale(1.05); box-shadow: 0 7px 14px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.08); }
         
         .nav-link { position: relative; }
         .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 2px;
-            bottom: -5px; left: 50%; transform: translateX(-50%);
-            background-color: #d4af37; transition: width 0.3s ease-in-out;
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%;
+            transform: translateX(-50%); background-color: #d4af37; transition: width 0.3s ease-in-out;
         }
         .nav-link:hover::after { width: 100%; }
         
@@ -205,6 +158,44 @@
         .hero-content.visible { opacity: 1; transform: translateY(0px); }
         
         .menu-dropdown { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; }
+
+        /* === Gemini Chat Widget Styles === */
+        #chat-fab {
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        #chat-fab:hover {
+            transform: scale(1.1);
+        }
+        #chat-widget {
+            transition: opacity 0.3s ease, transform 0.3s ease, width 0s, height 0s;
+        }
+        .chat-message {
+            max-width: 80%;
+        }
+        .chat-message.user {
+            background-color: #d4af37;
+            color: #1a1a1a;
+        }
+        .chat-message.ai {
+            background-color: #f0f0f0;
+        }
+        .dark .chat-message.ai {
+            background-color: #2c2c2c;
+        }
+        .typing-indicator span {
+            animation: blink 1.4s infinite both;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            20% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
     </style>
     
     <!-- ============== GOOGLE ANALYTICS ============== -->
@@ -266,16 +257,16 @@
         <div class="carousel-container h-full">
             <div class="carousel-slide flex h-full">
                 <!-- Slide 1 -->
-                <div class="w-full flex-shrink-0 h-full bg-cover bg-center relative" style="background-image: url('https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/6230985c-06f0-4d8a-a503-147675d7e9e1_file20191011-23785-1rzmiqk.jpeg');">
+                 <div class="w-full flex-shrink-0 h-full bg-cover bg-center relative" style="background-image: url('https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/6230985c-06f0-4d8a-a503-147675d7e9e1_file20191011-23785-1rzmiqk.jpeg');">
                     <div class="absolute inset-0 bg-black/80"></div>
                     <div class="absolute inset-0 flex items-center justify-center p-6 z-10 hero-content">
                         <div>
                             <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-wider text-shadow">Roti Bakar Beverly Hills</h1>
                             <p class="text-lg sm:text-xl md:text-3xl text-primary mt-4 font-medium italic">Roti Bakar & Susu Segar di </p>
                                     <div class="mt-6 text-lg flex items-center justify-center gap-2">
-            <i class="fas fa-map-marker-alt text-primary"></i>
-            <span>Jogjakarta, Indonesia</span>
-        </div>
+                                        <i class="fas fa-map-marker-alt text-primary"></i>
+                                        <span>Jogjakarta, Indonesia</span>
+                                    </div>
                             <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                                 <a href="https://www.google.com/maps/search/?q=Beverly+Hills+Jogja" target="_blank" rel="noopener noreferrer" class="btn-primary w-full sm:w-auto animate-pulse-primary">Cari Lokasi Kami</a>
                                 <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn-primary btn-secondary w-full sm:w-auto flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> Pesan Sekarang</a>
@@ -459,13 +450,13 @@
                 <p class="text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">Komitmen kami untuk kualitas dan keamanan produk yang terjamin.</p>
             </div>
             <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-                <div class="cert-badge bg-white dark:bg-dark p-4 rounded-lg shadow-lg cursor-pointer scroll-reveal border border-gray-200 dark:border-gray-700" onclick="openModal('images/images/halal.jpg')" role="button" tabindex="0">
+                <div class="cert-badge bg-white dark:bg-dark p-4 rounded-lg shadow-lg cursor-pointer scroll-reveal border border-gray-200 dark:border-gray-700" onclick="openModal('images/halal.jpg')" role="button" tabindex="0">
                     <img src="images/images/halal.jpg" alt="Sertifikat Halal MUI Roti Bakar Beverly Hills" class="h-32 md:h-40 w-auto">
                 </div>
-                <div class="cert-badge bg-white dark:bg-dark p-4 rounded-lg shadow-lg cursor-pointer scroll-reveal border border-gray-200 dark:border-gray-700" onclick="openModal('images/images/halal2.png')" role="button" tabindex="0">
+                <div class="cert-badge bg-white dark:bg-dark p-4 rounded-lg shadow-lg cursor-pointer scroll-reveal border border-gray-200 dark:border-gray-700" onclick="openModal('images/halal2.png')" role="button" tabindex="0">
                     <img src="images/images/halal2.png" alt="Sertifikasi Keamanan Pangan" class="h-32 md:h-40 w-auto">
                 </div>
-                <div class="cert-badge bg-white dark:bg-dark p-4 rounded-lg shadow-lg cursor-pointer scroll-reveal border border-gray-200 dark:border-gray-700" onclick="openModal('images/images/halal3.png')" role="button" tabindex="0">
+                <div class="cert-badge bg-white dark:bg-dark p-4 rounded-lg shadow-lg cursor-pointer scroll-reveal border border-gray-200 dark:border-gray-700" onclick="openModal('images/halal3.png')" role="button" tabindex="0">
                     <img src="images/images/halal3.png" alt="Sertifikasi HACCP" class="h-32 md:h-40 w-auto">
                 </div>
             </div>
@@ -621,6 +612,9 @@
                     <a href="https://gofood.co.id/search?search=Roti+Bakar+Beverly+Hills&q=+roti+bakar+beverly+hills+jogja&isHistory=true" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white font-bold py-3 px-6 rounded-full uppercase tracking-wide hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
                         <i class="fas fa-motorcycle"></i> Pesan di GoFood
                     </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-red-600 text-white font-bold py-3 px-6 rounded-full uppercase tracking-wide hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-shopping-bag"></i> Pesan di ShopeeFood
+                    </a>
                 </div>
             </div>
         </div>
@@ -630,6 +624,53 @@
     </div>
 </footer>
 <!-- Footer End -->
+
+<!-- ============== CHAT WIDGET ============== -->
+<!-- Chat Widget Start -->
+<div id="chat-container">
+    <!-- Floating Action Button -->
+    <button id="chat-fab" class="fixed bottom-8 right-8 bg-primary h-16 w-16 rounded-full shadow-lg flex items-center justify-center text-dark text-3xl z-40">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+
+    <!-- Chat Widget -->
+    <!-- UPDATED: Added responsive classes for mobile-first full-screen view -->
+    <div id="chat-widget" class="fixed inset-0 bg-white dark:bg-dark-accent flex-col hidden z-50 sm:inset-auto sm:bottom-28 sm:right-8 sm:w-full sm:max-w-sm sm:h-[60vh] sm:rounded-2xl sm:shadow-2xl sm:origin-bottom-right">
+        <!-- Header -->
+        <div class="bg-secondary p-4 text-white sm:rounded-t-2xl flex justify-between items-center">
+            <h3 class="font-bold text-lg">Tanya Beverly Hills</h3>
+            <button id="close-chat-btn" class="text-2xl">&times;</button>
+        </div>
+        <!-- Messages -->
+        <div id="chat-messages" class="flex-1 p-4 space-y-4 overflow-y-auto">
+            <!-- Initial AI Message -->
+            <div class="chat-message ai self-start">
+                <p class="text-sm rounded-lg p-3">Halo! Ada yang bisa saya bantu? Silakan tanya tentang menu, lokasi, atau jam buka kami.</p>
+            </div>
+        </div>
+        <!-- Typing Indicator -->
+        <div id="typing-indicator" class="px-4 pb-2 hidden">
+             <div class="chat-message ai self-start">
+                <div class="p-3 flex items-center justify-center space-x-1.5">
+                    <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                    <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                    <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                </div>
+            </div>
+        </div>
+        <!-- Input -->
+        <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-2">
+                <input type="text" id="chat-input" placeholder="Ketik pertanyaanmu..." class="w-full px-4 py-2 bg-light dark:bg-dark border border-gray-300 dark:border-gray-600 rounded-full focus:ring-2 focus:ring-primary focus:border-primary transition-colors dark:text-gray-200 placeholder:text-gray-500">
+                <button id="send-chat-btn" class="bg-primary text-dark rounded-full h-10 w-10 flex-shrink-0 flex items-center justify-center text-xl">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Chat Widget End -->
+
 
 <!-- ============== MODALS ============== -->
 <!-- Modals Start -->
@@ -667,12 +708,12 @@ document.addEventListener('DOMContentLoaded', function() {
         initMenuDropdown();
         initModals();
         initFeedbackForm();
+        initChatWidget(); 
         initGlobalKeyListener();
     }
 
     /**
      * Menangani preloader.
-     * Halaman disembunyikan via CSS dan ditampilkan saat semua konten dimuat.
      */
     function initPreloader() {
         const preloader = document.getElementById('preloader');
@@ -686,7 +727,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /**
      * Menangani fungsionalitas Dark Mode.
-     * Memeriksa localStorage atau preferensi sistem dan menambahkan event listener ke tombol toggle.
      */
     function initDarkMode() {
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -695,7 +735,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!themeToggleBtn || !themeToggleDarkIcon || !themeToggleLightIcon) return;
 
-        // Atur tema awal saat memuat
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
             themeToggleLightIcon.classList.remove('hidden');
@@ -704,11 +743,9 @@ document.addEventListener('DOMContentLoaded', function() {
             themeToggleDarkIcon.classList.remove('hidden');
         }
 
-        // Tambahkan listener ke tombol toggle
         themeToggleBtn.addEventListener('click', function() {
             themeToggleDarkIcon.classList.toggle('hidden');
             themeToggleLightIcon.classList.toggle('hidden');
-
             const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
         });
@@ -759,7 +796,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         mobileNavLinks.forEach(link => link.addEventListener('click', () => toggleMenu(true)));
         
-        // Tutup menu saat mengklik di luar header
         document.addEventListener('click', (e) => {
           if (!mobileMenu.classList.contains('hidden') && !header.contains(e.target)) {
               toggleMenu(true);
@@ -822,32 +858,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /**
      * Mengamati elemen untuk animasi saat masuk ke viewport.
-     * Menerapkan efek staggered (muncul satu per satu) untuk elemen anak.
      */
     function initScrollReveal() {
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Temukan semua elemen .scroll-reveal di dalam section yang terlihat
                     const children = entry.target.querySelectorAll('.scroll-reveal');
                     if (children.length > 0) {
                         children.forEach((child, index) => {
-                            // Terapkan delay bertingkat untuk efek stagger
                             setTimeout(() => {
                                 child.classList.add('visible');
-                            }, index * 200); // UPDATED: Stagger delay disesuaikan
+                            }, index * 200);
                         });
                     } else {
-                        // Jika tidak ada children, animasikan parent-nya
                          entry.target.classList.add('visible');
                     }
-                    // Berhenti mengamati setelah animasi berjalan
                     observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
 
-        // Amati setiap section dan footer
         document.querySelectorAll('section, footer').forEach(el => revealObserver.observe(el));
     }
 
@@ -861,7 +891,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const icon = this.querySelector('.dropdown-icon');
                 const isExpanded = dropdown.style.maxHeight;
 
-                // Tutup semua dropdown lain
                 document.querySelectorAll('.menu-dropdown').forEach(d => {
                     if (d !== dropdown) {
                         d.style.maxHeight = null;
@@ -869,7 +898,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                // Toggle dropdown yang diklik
                 if (isExpanded) {
                     dropdown.style.maxHeight = null;
                     icon?.classList.remove('rotate-180');
@@ -918,13 +946,13 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function initFeedbackForm() {
         const feedbackForm = document.getElementById('feedbackForm');
+        if (!feedbackForm) return;
+
         const thanksPopup = document.getElementById('thanks-popup');
         const popupCloseBtn = document.getElementById('popup-close');
         const stars = document.querySelectorAll('.star-rating .fa-star');
         const ratingInput = document.getElementById('rating');
         const ratingLabel = document.getElementById('rating-label');
-
-        if (!feedbackForm) return;
 
         stars.forEach(star => {
             const updateStars = (hoverValue) => stars.forEach(s => s.classList.toggle('selected', s.dataset.value <= hoverValue));
@@ -968,6 +996,125 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.target === thanksPopup) closeThanksPopup();
         });
     }
+
+    /**
+     * Menangani fungsionalitas Chat Widget dengan Gemini API.
+     */
+    function initChatWidget() {
+        const chatFab = document.getElementById('chat-fab');
+        const chatWidget = document.getElementById('chat-widget');
+        const closeChatBtn = document.getElementById('close-chat-btn');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendChatBtn = document.getElementById('send-chat-btn');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        if (!chatFab || !chatWidget) return;
+
+        const toggleChat = () => {
+            const isHidden = chatWidget.classList.contains('hidden');
+            if (isHidden) {
+                chatWidget.classList.remove('hidden');
+                chatWidget.classList.add('flex');
+                setTimeout(() => {
+                    chatWidget.style.opacity = '1';
+                    chatWidget.style.transform = 'translateY(0)';
+                }, 10);
+                chatInput.focus();
+            } else {
+                chatWidget.style.opacity = '0';
+                chatWidget.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    chatWidget.classList.add('hidden');
+                    chatWidget.classList.remove('flex');
+                }, 300);
+            }
+        };
+
+        chatFab.addEventListener('click', toggleChat);
+        closeChatBtn.addEventListener('click', toggleChat);
+
+        const sendMessage = async () => {
+            const userInput = chatInput.value.trim();
+            if (userInput === '') return;
+
+            appendMessage(userInput, 'user');
+            chatInput.value = '';
+            typingIndicator.classList.remove('hidden');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            const context = `
+                Anda adalah asisten virtual untuk 'Roti Bakar Beverly Hills', sebuah kedai roti bakar populer di Jogja. 
+                Tugas Anda adalah menjawab pertanyaan pelanggan dengan ramah, informatif, dan relevan. 
+                Gunakan informasi yang diberikan di bawah ini sebagai sumber utama Anda. 
+                Jika informasi tidak tersedia, Anda boleh menggunakan pengetahuan umum dari Google tentang 'Roti Bakar Beverly Hills Jogja'. 
+                Jawablah dengan gaya bahasa yang natural dan membantu, tidak terlalu kaku seperti robot, tapi tetap profesional. Selalu jawab dalam Bahasa Indonesia.
+
+                Informasi Kontekstual:
+                - Menu Andalan: Combo Roti Bakar + Susu Murni, berbagai varian Indomie, serta Pisang & Jagung Bakar.
+                - Lokasi & Jam Buka:
+                  - Gondokusuman: Jl. Urip Sumoharjo No.76 (Buka dari jam 21:30 malam sampai 03:00 pagi).
+                  - Gejayan: Jl. Affandi, Condongcatur (Buka dari jam 17:00 sore sampai 00:00 tengah malam).
+                  - Maguwoharjo: Jl. Kepuhsari No.005 (Buka dari jam 17:00 sore sampai 00:00 tengah malam).
+                - Cara Pesan: Pelanggan bisa memesan langsung di tempat, atau melalui WhatsApp, GoFood, dan ShopeeFood.
+                - Sertifikasi: Kami memiliki sertifikasi Halal dari MUI.
+                - Keunggulan: Kami menggunakan 100% susu murni segar dari peternak lokal dan bahan-bahan berkualitas tanpa pengawet.
+            `;
+
+            try {
+                let chatHistory = [{ role: "user", parts: [{ text: context + "\n\nPertanyaan Pelanggan: " + userInput }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // API key will be injected by the environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error(`API error: ${response.statusText}`);
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    appendMessage(text, 'ai');
+                } else {
+                    throw new Error("Respon dari AI tidak valid.");
+                }
+
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                appendMessage("Maaf, sepertinya ada sedikit gangguan. Boleh coba tanyakan lagi?", 'ai');
+            } finally {
+                typingIndicator.classList.add('hidden');
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        };
+
+        const appendMessage = (text, sender) => {
+            const messageWrapper = document.createElement('div');
+            messageWrapper.className = `chat-message ${sender} self-start flex`;
+            if (sender === 'user') {
+                messageWrapper.classList.add('self-end');
+            }
+            
+            const messageBubble = document.createElement('p');
+            messageBubble.className = 'text-sm rounded-lg p-3';
+            messageBubble.textContent = text;
+            
+            messageWrapper.appendChild(messageBubble);
+            chatMessages.appendChild(messageWrapper);
+        };
+
+        sendChatBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    }
     
     /**
      * Menambahkan listener global untuk tombol Escape.
@@ -975,9 +1122,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function initGlobalKeyListener() {
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
-                window.closeModal(); // Menutup modal sertifikat
-                document.getElementById('thanks-popup')?.classList.add('hidden'); // Menutup popup terima kasih
+                window.closeModal();
+                document.getElementById('thanks-popup')?.classList.add('hidden');
                 document.getElementById('thanks-popup')?.classList.remove('flex');
+                document.getElementById('chat-widget')?.classList.add('hidden');
+                document.getElementById('chat-widget')?.classList.remove('flex');
                 document.body.style.overflow = 'auto';
                 if (!document.getElementById('mobile-menu').classList.contains('hidden')) {
                     initMobileMenu().toggleMenu(true);
